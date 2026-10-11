@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Aurora Study Nebula Design Tokens - Light Theme */
+  --color-bg: #F5F3FF; /* Lavender Mist */
+  --color-card: #FFFFFF; /* Pearl White */
+  --color-card-border: rgba(124, 58, 237, 0.12);
+  --color-card-hover: #FFFFFF;
+  --color-text: #1E293B; /* Slate Ink */
+  --color-text-muted: #64748B;
+  --color-text-subtle: #94A3B8;
+  --color-topbar-bg: rgba(255, 255, 255, 0.82);
+  --color-sidebar-bg: rgba(255, 255, 255, 0.88);
+  --color-sidebar-border: rgba(124, 58, 237, 0.12);
+  --glass-border: rgba(124, 58, 237, 0.18);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-shadow: 0 8px 32px 0 rgba(124, 58, 237, 0.08);
+
+  /* Semantic status colors */
+  --status-mastered: #34D399; /* Mint */
+  --status-in-progress: #FBBF24; /* Amber */
+  --status-weak: #FB7185; /* Coral */
+  --status-unassessed: #22D3EE; /* Cyan */
+}
+
+.dark {
+  /* Deep Space Dark Theme */
+  --color-bg: #0B0A1A; /* Abyssal Midnight */
+  --color-card: #151231; /* Deep Nebula Card */
+  --color-card-border: rgba(124, 58, 237, 0.26);
+  --color-card-hover: #1C1742;
+  --color-text: #F1F0FB; /* Starlight White */
+  --color-text-muted: #A5A1D6; /* Soft Lavender Muted */
+  --color-text-subtle: #736C9E;
+  --color-topbar-bg: rgba(15, 13, 36, 0.85);
+  --color-sidebar-bg: rgba(15, 13, 36, 0.90);
+  --color-sidebar-border: rgba(124, 58, 237, 0.22);
+  --glass-border: rgba(124, 58, 237, 0.32);
+  --glass-bg: rgba(21, 18, 49, 0.78);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Monospaced / Tabular numerals to prevent digit jiggle */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-pill {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Gradient Borders */
+.gradient-border-wrap {
+  position: relative;
+  border-radius: 9999px;
+  background: linear-gradient(120deg, #7C3AED, #D946EF, #22D3EE);
+  padding: 1px;
+}
+
+.gradient-border-inner {
+  border-radius: 9999px;
+  background: var(--color-card);
+}
+
+/* Accessibility: Focus Visible Ring in Aurora Cyan */
+:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px #22D3EE, 0 0 16px rgba(34, 211, 238, 0.45) !important;
+}
+
+/* Standard Button / Interactive States */
+.interactive-tap:active {
+  transform: scale(0.97);
+  transition: transform 100ms ease;
+}
+
+/* Hover effects scoped to devices that support genuine hover */
+@media (hover: hover) {
+  .interactive-hover {
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 200ms ease, 
+                border-color 200ms ease;
+  }
+  .interactive-hover:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.02);
+  }
+  
+  .card-hover {
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 220ms ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px -10px rgba(124, 58, 237, 0.18), 0 0 20px -2px rgba(34, 211, 238, 0.15);
+    border-color: rgba(124, 58, 237, 0.35);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+  .animate-pulse-subtle {
+    animation: none !important;
+  }
+  .interactive-hover:hover,
+  .card-hover:hover,
+  .interactive-tap:active {
+    transform: none !important;
+  }
+}
