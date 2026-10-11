@@ -1,0 +1,13 @@
+{
+  "name": "mindora-ai",
+  "version": "2.0.0",
+  "description": "Mindora AI — Aurora Study Nebula Platform",
+  "scripts": {
+    "server": "python -m uvicorn backend.app.main:app --port 5000 --reload",
+    "client": "node client/node_modules/vite/bin/vite.js client",
+    "test:backend": "python -m pytest backend/tests",
+    "test:client": "node client/node_modules/vitest/vitest.mjs run --root client",
+    "test": "python -m pytest backend/tests && node client/node_modules/vitest/vitest.mjs run --root client",
+    "build": "node client/node_modules/typescript/bin/tsc -b client && node client/node_modules/vite/bin/vite.js build client"
+  }
+}

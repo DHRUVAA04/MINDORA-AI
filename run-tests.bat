@@ -1,0 +1,3 @@
+@echo off
+echo [MINDORA AI] Running test suite...
+python -m pytest backend/tests && node client/node_modules/vitest/vitest.mjs run --root client
