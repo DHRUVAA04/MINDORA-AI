@@ -196,3 +196,4 @@ This project was conceived and developed as part of the academic curriculum at:
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
